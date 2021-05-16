@@ -1,0 +1,7 @@
+mixin feature-card(feature)
+	.col-md-3.d-flex.justify-content-between
+		.card
+			.card-body
+				h5.card-title= feature.name
+				p.card-text= feature.about
+				a.btn.btn-primary(href="#")= feature.action

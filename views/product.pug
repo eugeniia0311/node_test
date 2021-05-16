@@ -1,0 +1,31 @@
+extends base.pug
+
+block content 
+	section.pt-5.mb-5
+		.container
+			nav(aria-label='breadcrumb')
+				ol.breadcrumb
+					li.breadcrumb-item
+						a(href='/') Home
+					li.breadcrumb-item
+						a(href='#') Library
+					li.breadcrumb-item.active(aria-current='page') Data
+			.row
+				.col-md-7
+					img(src="https://media.discordapp.net/attachments/756099827649085482/836968959407947776/detail-3-gray.jpeg?width=676&height=676" style="max-width:100%")
+				.col-md-5
+					h3 Wow, u really need this sh*t
+					.justify-content-between
+						h4
+							| 65 $
+							del.small.text-mutted 99$
+					p.text-secondary The best one u've ever seen in ur hole life. This text was ment to be the description of this product, but i guess i'm to lazy right now to write it or even copy that 'lorem ipsum' thing
+
+					b 
+						| Size
+						small.text-secondary (obyazatel'noe pole)
+					select.form-select(aria-label='Default select example')
+						option(selected='') Choose your size
+						option(value='1') S
+						option(value='2') M
+						option(value='3') L
