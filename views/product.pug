@@ -22,10 +22,28 @@ block content
 					p.text-secondary The best one u've ever seen in ur hole life. This text was ment to be the description of this product, but i guess i'm to lazy right now to write it or even copy that 'lorem ipsum' thing
 
 					b 
-						| Size
+						| Габариты
 						small.text-secondary (obyazatel'noe pole)
-					select.form-select(aria-label='Default select example')
-						option(selected='') Choose your size
-						option(value='1') S
-						option(value='2') M
-						option(value='3') L
+					.mb-2
+						select.form-select(aria-label='Default select example')
+							option(selected='') Choose your size
+							option(value='1') S
+							option(value='2') M
+							option(value='3') L
+
+					b
+						| Акксесуары
+
+					.mb-4
+						.form-check
+							input#flexCheckDefault.form-check-input(type='checkbox' value='')
+							label.form-check-label(for='flexCheckDefault')
+							| Default checkbox
+						.form-check
+							input#flexCheckChecked.form-check-input(type='checkbox' value='' checked='')
+							label.form-check-label(for='flexCheckChecked')
+							| Checked checkbox
+					.d-grid.gap-2.col-6.mx-auto
+						button.btn.btn-primary(type='button') Button
+					.d-grid.gap-2.col-6.mx-auto
+						button.btn.btn-primary(type='button') Button
