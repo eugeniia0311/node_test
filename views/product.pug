@@ -1,49 +1,61 @@
-extends base.pug
+extends layout/base.pug
 
-block content 
+block content
 	section.pt-5.mb-5
 		.container
-			nav(aria-label='breadcrumb')
-				ol.breadcrumb
+			nav.mb-4(aria-label='breadcrumb')
+				ol.breadcrumb.bg-light
 					li.breadcrumb-item
-						a(href='/') Home
+						a(href='/') Главная
 					li.breadcrumb-item
-						a(href='#') Library
-					li.breadcrumb-item.active(aria-current='page') Data
+						a(href='#') Гоночные дроны
+					li.breadcrumb-item.active(aria-current='page') Ультрадрон
+			
 			.row
 				.col-md-7
-					img(src="https://media.discordapp.net/attachments/756099827649085482/836968959407947776/detail-3-gray.jpeg?width=676&height=676" style="max-width:100%")
+					img(src="https://media.discordapp.net/attachments/756099827649085482/836968959407947776/detail-3-gray.jpeg?width=1089&height=1089" style="max-width: 100%")
 				.col-md-5
-					h3 Wow, u really need this sh*t
-					.justify-content-between
-						h4
-							| 65 $
-							del.small.text-mutted 99$
-					p.text-secondary The best one u've ever seen in ur hole life. This text was ment to be the description of this product, but i guess i'm to lazy right now to write it or even copy that 'lorem ipsum' thing
+					h3.mb-3#productName Дрон LP-4567
 
-					b 
-						| Габариты
-						small.text-secondary (obyazatel'noe pole)
-					.mb-2
-						select.form-select(aria-label='Default select example')
-							option(selected='') Choose your size
-							option(value='1') S
-							option(value='2') M
-							option(value='3') L
+					.mb-4.justify-content-between
+						h4.text-success
+							span#productPrice 6500₽ 
+							del.small.text-mutted.text-secondary 12999₽
+
+					p.text-secondary Этот дрон — стандарт, на который стараются равняться все остальные компании. Его используют профессиональные гонщики по всему миру
 
 					b
-						| Акксесуары
+						| Размер 
+						small.text-secondary (обязательное поле)
+
+					.mb-2
+						select.form-select.form-select-lg#productSize(aria-label='Default select example')
+							option(selected='1') Выберите размер
+							option(value='15') 15x15см
+							option(value='25') 25x25см
+
+					b
+						| Акксессуары
 
 					.mb-4
 						.form-check
-							input#flexCheckDefault.form-check-input(type='checkbox' value='')
-							label.form-check-label(for='flexCheckDefault')
-							| Default checkbox
+							input#extraAccumulator.form-check-input(type='checkbox')
+							label.form-check-label(for='extraAccumulator')
+								| Дополнительный аккумулятор (+ 500₽)
+
 						.form-check
-							input#flexCheckChecked.form-check-input(type='checkbox' value='' checked='')
-							label.form-check-label(for='flexCheckChecked')
-							| Checked checkbox
-					.d-grid.gap-2.col-6.mx-auto
-						button.btn.btn-primary(type='button') Button
-					.d-grid.gap-2.col-6.mx-auto
-						button.btn.btn-primary(type='button') Button
+							input#extraBlades.form-check-input(type='checkbox')
+							label.form-check-label(for='extraBlades')
+								| Дополнительные лопасти (+ 150₽)
+
+
+					button.btn.btn-success.w-100.mb-2#addToCartButton(
+						type="button"
+						onclick="addToCart()"
+					)
+						| Добавить в корзину
+					button.btn.btn-link.btn-sm.w-100(type="button") Добавить в избранное
+
+block customPageScripts
+	script(type="text/javascript" src="js/productPage.js")
+

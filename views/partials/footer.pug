@@ -1,47 +1,52 @@
-section.bg-secondary.text-light
-	div.container
-		footer(style='padding: 3%;', width: ).d-flex.justify-content-between
-			div(style='width: 40%;')
-				h1 Be in touch
-				p 
-				|Lorem ipsum dolor sit amet, consecteutr asdfdsf cactuss
-				|fish kick peanut
-				.mb-4(style='width:100%')
-					label.form-label(for="name") Mail
-					input.form-control(
-					type="email"
-					id="mail"
-					name="email"
-					placeholder="my.name@gmail.com"
-					required
-					style="width:80%"
-							)
-			div.d-flex.justify-content-between(style="width:50%")
-					ul.list-group.list-group-flush
-						li.list-item(style='list-style-type: none; font-weight:700; padding-bottom: 15px;') Shop
-						li.list-item(style='list-style-type: none; line-height:35px') For Women
-						li.list-item(style='list-style-type: none;line-height: 35px;') For Men
-						li.list-item(style='list-style-type: none; line-height: 35px;') Stores
-						li.list-item(style='list-style-type: none;line-height: 35px;') Our Blog
-						li.list-item(style='list-style-type: none;line-height: 35px;') Shop
-					ul.list.list-group-flush
-						li.list-item(style='list-style-type: none;font-weight:700; padding-bottom: 15px;') Company
-						li.list-item(style='list-style-type: none; line-height: 35px;') Login
-						li.list-item(style='list-style-type: none; line-height: 35px;') Register
-						li.list-item(style='list-style-type: none; line-height: 35px;') Wishlist
-						li.list-item(style='list-style-type: none;line-height: 35px;') Our Products
-						li.list-item(style='list-style-type: none;line-height: 35px;') Checkouts
-					ul.list.list-group-flush
-						li.list-item(style='list-style-type: none;font-weight:700; padding-bottom: 15px;') Your account
-						li.list-item(style='list-style-type: none;line-height: 35px;') Login
-						li.list-item(style='list-style-type: none;line-height: 35px;') Register
-						li.list-item(style='list-style-type: none;line-height: 35px;') Wishlist
-						li.list-item(style='list-style-type: none;line-height: 35px;') Our Products
-						li.list-item(style='list-style-type: none;line-height: 35px;') Checkouts
+footer.footer.bg-secondary.pt-4.text-light
+	.container
+		.row.w-100.mb-5
+			.col-md-4
+				h5 Будем на связи
+				p Специально для вас мы собрали классную рассылку, которая будет приходить раз в месяц
+				form(action="/api/subscribeEmail" method="get")
+					input.form-control.w-100(
+						type="email"
+						required
+						placeholder="zack@banana.io"
+						name="email"
+					)
+			.row.col-md-8
+				.col-md-3
+				.col-md-3
+					h5 Дроны
+					ul.list-unstyled.text-small
+						li.mb-1
+							a.text-light(href="#") Сверхзвуковые
+						li.mb-1
+							a.text-light(href="#") Для съёмки
+						li.mb-1
+							a.text-light(href="#") Спортивные
+
+				.col-md-3
+					h5 Магазин
+					ul.list-unstyled.text-small
+						li.mb-1
+							a.text-light(href="#") О компании
+						li.mb-1
+							a.text-light(href="#") Адреса
+						li.mb-1
+							a.text-light(href="#") Контакты
+
+				.col-md-3
+					h5 Бренды
+					ul.list-unstyled.text-small
+						li.mb-1
+							a.text-light(href="#") SuperDrive
+						li.mb-1
+							a.text-light(href="#") Sharp
+						li.mb-1
+							a.text-light(href="#") Droooooone
+						li.mb-1
+							a.text-light(href="#") Z-xc
+
 		.row.justify-content-between.pt-2.pb-2
 			.col
-				small 2017-2021
+				small © 2017–2021
 			.col.text-end
 				small Пользовательское соглашение | Политика использования Cookies
-
-

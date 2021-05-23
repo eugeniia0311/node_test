@@ -4,9 +4,5 @@ mixin product-card(product)
 			img.card-img-top(src= product.image)
 			.card-body
 				h5.card-title= product.name
-				p.card-text= product.price
-				a.btn.btn-primary(href="#") В корзину
-
-
-
-
+				p.card-text= `Цена: ${product.price}р`
+				a.btn.btn-primary(href=`/${product.brand}/${product.id}`) Подробнее

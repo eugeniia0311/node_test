@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "evgen",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
