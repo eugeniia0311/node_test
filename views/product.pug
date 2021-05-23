@@ -8,21 +8,23 @@ block content
 					li.breadcrumb-item
 						a(href='/') Главная
 					li.breadcrumb-item
-						a(href='#') Гоночные дроны
-					li.breadcrumb-item.active(aria-current='page') Ультрадрон
+						a(href=`${product.brand}`)= product.brand
+					li.breadcrumb-item.active(aria-current='page')= 	product.name
 			
 			.row
 				.col-md-7
-					img(src="https://media.discordapp.net/attachments/756099827649085482/836968959407947776/detail-3-gray.jpeg?width=1089&height=1089" style="max-width: 100%")
+					img(src= product.image style="max-width: 100%")
 				.col-md-5
-					h3.mb-3#productName Дрон LP-4567
+					h3.mb-3#productName= product.name
 
 					.mb-4.justify-content-between
 						h4.text-success
-							span#productPrice 6500₽ 
-							del.small.text-mutted.text-secondary 12999₽
+							span#productPrice= `${product.price - product.discount}₽`
 
-					p.text-secondary Этот дрон — стандарт, на который стараются равняться все остальные компании. Его используют профессиональные гонщики по всему миру
+							if product.discount != 0
+								del.small.text-mutted.text-secondary.ml-2= product.price + '₽'
+
+					p.text-secondary= product.desc
 
 					b
 						| Размер 
@@ -40,13 +42,11 @@ block content
 					.mb-4
 						.form-check
 							input#extraAccumulator.form-check-input(type='checkbox')
-							label.form-check-label(for='extraAccumulator')
-								| Дополнительный аккумулятор (+ 500₽)
+							label.form-check-label(for='extraAccumulator')= `Дополнительный аккумулятор (+${product.extraAccumulatorPrice}₽)`
 
 						.form-check
 							input#extraBlades.form-check-input(type='checkbox')
-							label.form-check-label(for='extraBlades')
-								| Дополнительные лопасти (+ 150₽)
+							label.form-check-label(for='extraBlades')=`Дополнительные лопасти (+${product.extraBladesPrice}₽)`
 
 
 					button.btn.btn-success.w-100.mb-2#addToCartButton(
@@ -57,5 +57,5 @@ block content
 					button.btn.btn-link.btn-sm.w-100(type="button") Добавить в избранное
 
 block customPageScripts
-	script(type="text/javascript" src="js/productPage.js")
+	script(type="text/javascript" src="/js/productPage.js")
 
