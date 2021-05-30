@@ -8,8 +8,8 @@ block content
 					li.breadcrumb-item
 						a(href='/') Главная
 					li.breadcrumb-item
-						a(href=`${product.brand}`)= product.brand
-					li.breadcrumb-item.active(aria-current='page')= 	product.name
+						a(href=`/${product.brand.toLo}`)= product.brand
+					li.breadcrumb-item.active(aria-current='page')= product.name
 			
 			.row
 				.col-md-7
@@ -19,10 +19,10 @@ block content
 
 					.mb-4.justify-content-between
 						h4.text-success
-							span#productPrice= `${product.price - product.discount}₽`
+							span#productPrice #{product.price - product.discount}₽
 
 							if product.discount != 0
-								del.small.text-mutted.text-secondary.ml-2= product.price + '₽'
+								del.small.text-mutted.text-secondary.ml-2 #{product.price}₽
 
 					p.text-secondary= product.desc
 
@@ -42,19 +42,24 @@ block content
 					.mb-4
 						.form-check
 							input#extraAccumulator.form-check-input(type='checkbox')
-							label.form-check-label(for='extraAccumulator')= `Дополнительный аккумулятор (+${product.extraAccumulatorPrice}₽)`
+							label.form-check-label(for='extraAccumulator')
+								| Дополнительный аккумулятор (+ #{product.extraAccumulatorPrice}₽)
 
 						.form-check
 							input#extraBlades.form-check-input(type='checkbox')
-							label.form-check-label(for='extraBlades')=`Дополнительные лопасти (+${product.extraBladesPrice}₽)`
+							label.form-check-label(for='extraBlades')
+								| Дополнительные лопасти (+ #{product.extraBladesPrice}₽)
 
 
 					button.btn.btn-success.w-100.mb-2#addToCartButton(
 						type="button"
-						onclick="addToCart()"
+						onclick=`addToCart(${JSON.stringify(product)})`
 					)
 						| Добавить в корзину
 					button.btn.btn-link.btn-sm.w-100(type="button") Добавить в избранное
+
+
+	include partials/buy-product-modal.pug					
 
 block customPageScripts
 	script(type="text/javascript" src="/js/productPage.js")

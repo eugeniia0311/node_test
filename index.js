@@ -1,5 +1,6 @@
 // мы через require достаем из папки node_modules/express/index.js нужную библиотеку
 const express = require('express');
+const brands = require('./src/js/brands');
 const products = require('./src/js/products');
 const path = require('path');
 const telegramBot = require('./src/js/telegram');
@@ -12,7 +13,7 @@ const tgChat = '-500064724';
 
 // получаем базовое серверное приложение
 const app = express();
-// telegramBot.launch();
+telegramBot.launch();
 
 // приложение установить движок отображения pug
 app.use(bodyParser.json());
@@ -21,7 +22,8 @@ app.use(bodyParser.urlencoded({
 })); 
 
 app.set('view engine', 'pug');
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + 'public/js'));
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(__dirname + '/node_modules/jquery/dist'));
 app.use(express.static(__dirname + '/node_modules/axios/dist'));
@@ -30,23 +32,47 @@ app.use(express.static(__dirname + '/node_modules/axios/dist'));
 app.get('/', (req, res) => {
 	// описываем, что мы делаем, когда постучались
 	// с помощью объекта response мы отдаем в ответ контент
+	const mainPageProducts = products.filter(product => product.id <= 4);
 	res.render(
 			'index',
 			{
 				pageTitle: 'Главная',
 				message: 'Лучший дрон-шоп Великого Устюга',
+				products: mainPageProducts
+			}
+		)
+})
+
+app.get('/drones', (req, res) => {
+	res.render(
+			'drones',
+			{
+				pageTitle: 'Все дроны магазина',
 				products
 			}
 		)
 })
 
-app.get('/product', (req, res) => {
-	res.render(
-			'product',
-			{
-				pageTitle: 'Страница продукта'
-			}
-		)
+app.post('/api/createPurchaseRequest', (req, res) => {
+	console.log('Body', req.body);
+
+	const product = products.find(product => product.id === req.body.productId)
+
+	telegramBot.telegram.sendMessage(
+		tgChat,
+		`
+		Привет! Тут новая заявка!
+		Имя: ${req.body.name}
+		Почта: ${req.body.email}
+		Телефон: ${req.body.phone}
+
+		Подробност заказф:
+		${product.name}
+		Доп аккумулятор:${req.body.extraAccumulator}
+		Доп лопасти:${req.body.extraBlades}
+		`
+	)
+	res.json('status', 200)
 })
 
 app.get('/:brand', (req, res) => {
@@ -54,12 +80,13 @@ app.get('/:brand', (req, res) => {
 		.filter(product => product.brand.toLowerCase() === req.params.brand.toLowerCase());
 
 	if (brandProducts.length) {
+		const brandInfo = brands.find(brand => brand.name.toLowerCase() === req.params.brand.toLowerCase()); 
 		res.render(
 			'brand',
 			{
 				pageTitle: `Дроны от бренда ${req.params.brand}`,
-				brandName: req.params.brand,
-				products: brandProducts
+				products: brandProducts,
+				brandInfo
 			}
 		)
 	} else {
